@@ -24,7 +24,7 @@ function App() {
       case "up":
         return "top-0 left-1/2 transform -translate-x-1/2 flex-row"; // Horizontally at the top
       case "down":
-        return "bottom-20 left-1/2 transform -translate-x-1/2 flex-row"; // Horizontally at the bottom (moved up by 20px to avoid overlap)
+        return "bottom-20 left-1/2 transform -translate-x-1/2 flex-row"; // Horizontally at the bottom
       case "left":
         return "left-0 top-1/2 transform -translate-y-1/2 flex-col"; // Vertically on the left
       case "right":
@@ -42,9 +42,14 @@ function App() {
 
   return (
     <div className="w-full h-screen duration-300 ease-in-out" style={{ backgroundColor: color }}>
-      {/* Nav Bar (Color Changer) */}
+      {/* Floating Nav Bar (Color Changer) */}
       <div
-        className={`fixed flex gap-4 p-4 bg-white/60 shadow-2xl backdrop-blur-lg rounded-3xl transition-all duration-300 ease-in-out ${getPositionClass()}`}
+        className={`fixed flex gap-4 p-4 bg-white/70 shadow-2xl backdrop-blur-lg rounded-3xl transition-all ease-in-out ${getPositionClass()}`}
+        style={{
+          zIndex: 1000, // Ensures it floats above other content
+          backdropFilter: 'blur(10px)', // For a frosted-glass effect
+          transitionDuration: "7000ms", // 7 seconds transition duration
+        }}
       >
         {colors.map(({ name, value, hover, shadow, text }) => (
           <button
